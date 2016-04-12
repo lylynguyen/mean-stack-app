@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="wishlistcreator">
+<head>
+<meta charset="utf-8"/>
+  <title>wishlist</title>
+</head>
+<body>
+  <div class="container" ng-controller="MainCtrl" ng-init="getList()">
+    <h1>Wish List Creator<h1>
+
+    <form>
+      <input type="text" ng-model="product.name" placeholder="Product name" required>
+      <input type="url" ng-model="product.url" placeholder="Link" required>
+      <input type="text" ng-model="product.price" placeholder="Price" required>
+      <button class="btn btn-primary" ng-click="saveOne()">Add Product</button>&nbsp;&nbsp;
+      <button class="btn btn-info" ng-click="deselect()">Clear</button>
+      <br>
+    </form>
+    <p>Filter by Product Name</p>
+      <input ng-model="filter" type="text" placeholder="Product name">
+    <br>
+    <ul >
+      <li ng-repeat="item in productlist | filter: filter">
+      <button class="btn btn-primary" ng-click="delete(item._id)">Delete Product</button>
+        <span>{{item.name}}</span>
+        <span><a href="{{item.url}}">{{item.url}}</a></span>
+        Price:<span> ${{item.price}}</span>
+      </li>
+    </ul>
+  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+<script src="controllers/controller.js"></script>
+<script src="services.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
